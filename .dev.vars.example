@@ -1,0 +1,3 @@
+# Copy to .dev.vars for local wrangler pages dev. Do not commit .dev.vars.
+# New secret for this site. Do not reuse Sharky's or Solid Craft's.
+SESSION_SECRET=
