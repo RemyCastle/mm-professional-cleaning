@@ -29,6 +29,13 @@ export type LivePhoto = {
   height: number
 }
 
+export type LiveReview = {
+  id: number
+  name: string
+  stars: number
+  text: string
+}
+
 export const fallbackSite: LiveSite = {
   hero_title: site.heroTitle,
   hero_lead: site.heroLead,
@@ -58,8 +65,24 @@ export const fallbackPhotos: LivePhoto[] = jobPhotos.map((row) => ({
   height: row.height,
 }))
 
+export const fallbackReviews: LiveReview[] = []
+
 export function photoIsPublic(photo: { src?: string | null }) {
   return Boolean(String(photo.src || "").trim())
+}
+
+export function reviewIsPublic(review: { name?: string; text?: string; stars?: number }) {
+  const name = String(review.name || "").trim()
+  const text = String(review.text || "").trim()
+  const stars = Number(review.stars)
+  return Boolean(name && text && Number.isInteger(stars) && stars >= 1 && stars <= 5)
+}
+
+export function featuredReviews(rows: LiveReview[]) {
+  return rows
+    .filter(reviewIsPublic)
+    .slice()
+    .sort((a, b) => b.stars - a.stars || b.id - a.id)
 }
 
 export function phoneTel(display: string) {

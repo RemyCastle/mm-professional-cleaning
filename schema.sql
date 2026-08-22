@@ -52,6 +52,17 @@ CREATE TABLE IF NOT EXISTS leads (
   status TEXT NOT NULL DEFAULT 'New'
 );
 
+-- Optional featured reviews. Never seed rows. Public only shows featured
+-- quotes, highest stars first. Zero featured means no quotes on the page.
+CREATE TABLE IF NOT EXISTS reviews (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  stars INTEGER NOT NULL,
+  body TEXT NOT NULL,
+  featured INTEGER NOT NULL DEFAULT 0,
+  created_at TEXT NOT NULL
+);
+
 -- Optional before/after pairs. Never seed rows. Public Work only shows
 -- a pair when both images exist and visible = 1.
 CREATE TABLE IF NOT EXISTS pairs (

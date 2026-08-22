@@ -6,9 +6,10 @@ import { useCallback, useEffect, useState } from "react"
 
 import { BrandMark } from "@/components/brand-mark"
 import { pairIsComplete, type LivePair } from "@/lib/pairs"
-import type { LivePhoto, LiveService, LiveSite } from "@/lib/public"
+import type { LivePhoto, LiveReview, LiveService, LiveSite } from "@/lib/public"
 
-type Tab = "site" | "requests" | "photos" | "users"
+type Tab = "site" | "requests" | "photos" | "reviews" | "users"
+type AdminReview = LiveReview & { featured: number }
 type Admin = { id: number; name: string }
 type Lead = {
   id: number
@@ -28,6 +29,7 @@ const TABS: { id: Tab; label: string }[] = [
   { id: "site", label: "Site" },
   { id: "requests", label: "Requests" },
   { id: "photos", label: "Photos" },
+  { id: "reviews", label: "Reviews" },
   { id: "users", label: "Users" },
 ]
 const STATUSES = ["New", "Called", "Scheduled", "Done"]
@@ -105,7 +107,7 @@ export function AdminApp() {
           Sign out
         </button>
       </div>
-      <div className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-4">
+      <div className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5">
         {TABS.map((item) => (
           <button
             key={item.id}
@@ -124,6 +126,7 @@ export function AdminApp() {
       {tab === "site" ? <SiteTab onNote={setNote} /> : null}
       {tab === "requests" ? <RequestsTab onNote={setNote} /> : null}
       {tab === "photos" ? <PhotosTab onNote={setNote} /> : null}
+      {tab === "reviews" ? <ReviewsTab onNote={setNote} /> : null}
       {tab === "users" ? <UsersTab me={me} onNote={setNote} /> : null}
     </AdminShell>
   )
@@ -771,6 +774,176 @@ function PhotosTab({ onNote }: { onNote: (n: string) => void }) {
             </div>
           </figcaption>
         </figure>
+      ))}
+    </div>
+  )
+}
+
+function ReviewsTab({ onNote }: { onNote: (n: string) => void }) {
+  const [reviews, setReviews] = useState<AdminReview[]>([])
+  const load = useCallback(() => {
+    api<{ reviews: AdminReview[] }>("/api/admin/reviews")
+      .then((data) => setReviews(data.reviews || []))
+      .catch((err) => onNote(err.message))
+  }, [onNote])
+  useEffect(() => {
+    load()
+  }, [load])
+  async function save(row: AdminReview) {
+    const data = await api<{ reviews: AdminReview[] }>("/api/admin/reviews", {
+      method: "PATCH",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(row),
+    })
+    setReviews(data.reviews || [])
+  }
+  return (
+    <div className="mt-6 flex max-w-xl flex-col gap-4">
+      <div>
+        <h2 className="text-4xl">Featured reviews</h2>
+        <p className="mt-2 font-semibold">
+          Paste a real quote. Name, stars, and the words they said. Public only shows Featured,
+          highest stars first. Zero featured means no quotes on the site. Do not invent a review.
+        </p>
+      </div>
+      <form
+        className="vinyl flex flex-col gap-3 p-4"
+        onSubmit={async (event) => {
+          event.preventDefault()
+          const form = event.currentTarget
+          const data = new FormData(form)
+          try {
+            const created = await api<{ reviews: AdminReview[] }>("/api/admin/reviews", {
+              method: "POST",
+              headers: { "content-type": "application/json" },
+              body: JSON.stringify({
+                name: data.get("name"),
+                stars: Number(data.get("stars")),
+                text: data.get("text"),
+                featured: data.get("featured") ? 1 : 0,
+              }),
+            })
+            form.reset()
+            setReviews(created.reviews || [])
+            onNote("Review saved.")
+          } catch (err) {
+            onNote(err instanceof Error ? err.message : "Save failed")
+          }
+        }}
+      >
+        <label className="flex flex-col gap-1 text-sm font-extrabold uppercase">
+          Name
+          <input name="name" required className="field-ink" />
+        </label>
+        <label className="flex flex-col gap-1 text-sm font-extrabold uppercase">
+          Stars
+          <select name="stars" required defaultValue="5" className="field-ink">
+            {[5, 4, 3, 2, 1].map((n) => (
+              <option key={n} value={n}>
+                {n}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="flex flex-col gap-1 text-sm font-extrabold uppercase">
+          Quote
+          <textarea name="text" required rows={4} className="field-ink" />
+        </label>
+        <label className="flex items-center gap-2 font-extrabold">
+          <input name="featured" type="checkbox" value="1" className="size-5 accent-hot" />
+          Featured
+        </label>
+        <button type="submit" className="cta cta-call w-fit" style={{ minHeight: "44px" }}>
+          Add quote
+        </button>
+      </form>
+      {reviews.length === 0 ? (
+        <p className="font-semibold">No quotes yet. The public page stays empty.</p>
+      ) : null}
+      {reviews.map((review, index) => (
+        <article key={review.id} className="vinyl flex flex-col gap-3 p-4">
+          <label className="flex flex-col gap-1 text-sm font-extrabold uppercase">
+            Name
+            <input
+              className="field-ink"
+              value={review.name}
+              onChange={(event) => {
+                const next = [...reviews]
+                next[index] = { ...review, name: event.target.value }
+                setReviews(next)
+              }}
+              onBlur={() => {
+                if (!review.name.trim() || !review.text.trim()) return
+                save(review).catch((err) => onNote(err.message))
+              }}
+            />
+          </label>
+          <label className="flex flex-col gap-1 text-sm font-extrabold uppercase">
+            Stars
+            <select
+              className="field-ink"
+              value={review.stars}
+              onChange={async (event) => {
+                const next = { ...review, stars: Number(event.target.value) }
+                try {
+                  await save(next)
+                } catch (err) {
+                  onNote(err instanceof Error ? err.message : "Could not update")
+                }
+              }}
+            >
+              {[5, 4, 3, 2, 1].map((n) => (
+                <option key={n} value={n}>
+                  {n}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="flex flex-col gap-1 text-sm font-extrabold uppercase">
+            Quote
+            <textarea
+              className="field-ink"
+              rows={4}
+              value={review.text}
+              onChange={(event) => {
+                const next = [...reviews]
+                next[index] = { ...review, text: event.target.value }
+                setReviews(next)
+              }}
+              onBlur={() => {
+                if (!review.name.trim() || !review.text.trim()) return
+                save(review).catch((err) => onNote(err.message))
+              }}
+            />
+          </label>
+          <label className="flex items-center gap-2 font-extrabold">
+            <input
+              type="checkbox"
+              className="size-5 accent-hot"
+              checked={Boolean(review.featured)}
+              onChange={async (event) => {
+                try {
+                  await save({ ...review, featured: event.target.checked ? 1 : 0 })
+                } catch (err) {
+                  onNote(err instanceof Error ? err.message : "Could not update")
+                }
+              }}
+            />
+            Featured
+          </label>
+          <button
+            type="button"
+            className="admin-mini w-fit"
+            onClick={async () => {
+              const data = await api<{ reviews: AdminReview[] }>(`/api/admin/reviews?id=${review.id}`, {
+                method: "DELETE",
+              })
+              setReviews(data.reviews || [])
+            }}
+          >
+            Remove
+          </button>
+        </article>
       ))}
     </div>
   )

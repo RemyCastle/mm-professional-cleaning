@@ -31,9 +31,11 @@ npx wrangler d1 execute mm-professional-cleaning --local --file=seed.sql
 npx wrangler pages dev ./out
 ```
 
-Open `/admin`. First visit: create owner. Then Site / Requests / Photos / Users.
+Open `/admin`. First visit: create owner. Then Site / Requests / Photos / Reviews / Users.
 
 Work stills stay a vertical stack. A job type stays off Work until it has a picture. Before/After is optional and off until both images are uploaded. Zero pairs is the default.
+
+Featured reviews are optional. Paste a real quote (name, stars, text). Public shows featured only, highest stars first. Zero featured means no review quotes on the page. Do not invent reviews.
 
 ## Deploy
 
@@ -55,7 +57,7 @@ Create D1 `mm-professional-cleaning` and R2 `mm-professional-cleaning-photos`, t
 - Area: Eugene / Springfield and surrounding
 - Voice copy is locked. Do not print "And more." as a fifth trade.
 
-No street. No owner name. No CCB. No hours. No prices. No reviews. No extra trades. No custom domain on the page.
+No street. No owner name. No CCB. No hours. No prices. No invented reviews. No extra trades. No custom domain on the page.
 
 ## Look
 

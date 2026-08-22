@@ -34,3 +34,4 @@ INSERT INTO services (slug, name, sort_order) SELECT 'deep-cleaning', 'Deep Clea
 
 -- Do not insert photos. No photo means the job type stays off Work.
 -- Do not insert pairs. Zero is the default. Never invent a before/after.
+-- Do not insert reviews. Zero featured means no quotes on the public site. Never invent a review.

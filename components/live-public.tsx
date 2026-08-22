@@ -5,11 +5,14 @@ import { createContext, useContext, useEffect, useState } from "react"
 import { fallbackPairs, pairIsPublic, type LivePair } from "@/lib/pairs"
 import {
   fallbackPhotos,
+  fallbackReviews,
   fallbackServices,
   fallbackSite,
+  featuredReviews,
   photoIsPublic,
   serviceBlurb,
   type LivePhoto,
+  type LiveReview,
   type LiveService,
   type LiveSite,
 } from "@/lib/public"
@@ -19,6 +22,7 @@ type Live = {
   services: LiveService[]
   photos: LivePhoto[]
   pairs: LivePair[]
+  reviews: LiveReview[]
 }
 
 const LiveContext = createContext<Live>({
@@ -26,6 +30,7 @@ const LiveContext = createContext<Live>({
   services: fallbackServices,
   photos: fallbackPhotos,
   pairs: fallbackPairs,
+  reviews: fallbackReviews,
 })
 
 export function useLive() {
@@ -38,6 +43,7 @@ export function LivePublicProvider({ children }: { children: React.ReactNode }) 
     services: fallbackServices,
     photos: fallbackPhotos,
     pairs: fallbackPairs,
+    reviews: fallbackReviews,
   })
 
   useEffect(() => {
@@ -46,8 +52,9 @@ export function LivePublicProvider({ children }: { children: React.ReactNode }) 
       fetch("/api/public/site").then((r) => (r.ok ? r.json() : null)),
       fetch("/api/public/photos").then((r) => (r.ok ? r.json() : null)),
       fetch("/api/public/pairs").then((r) => (r.ok ? r.json() : null)),
+      fetch("/api/public/reviews").then((r) => (r.ok ? r.json() : null)),
     ])
-      .then(([siteRes, photoRes, pairRes]) => {
+      .then(([siteRes, photoRes, pairRes, reviewRes]) => {
         if (gone) return
         setLive({
           site: siteRes?.site
@@ -76,6 +83,9 @@ export function LivePublicProvider({ children }: { children: React.ReactNode }) 
             ? photoRes.photos.filter(photoIsPublic)
             : fallbackPhotos,
           pairs: Array.isArray(pairRes?.pairs) ? pairRes.pairs.filter(pairIsPublic) : fallbackPairs,
+          reviews: Array.isArray(reviewRes?.reviews)
+            ? featuredReviews(reviewRes.reviews)
+            : fallbackReviews,
         })
       })
       .catch(() => {
