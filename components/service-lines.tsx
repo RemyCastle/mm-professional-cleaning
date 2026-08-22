@@ -11,7 +11,7 @@ export function ServiceLines() {
         const blurb = serviceBlurb(service)
         return (
           <li key={service.slug}>
-            <span className="font-extrabold">{service.name}</span>
+            <span className="font-semibold">{service.name}</span>
             {blurb ? ` — ${blurb}` : null}
           </li>
         )

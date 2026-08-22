@@ -21,7 +21,7 @@ export function SiteHeader() {
         <Link href="/" className="shrink-0">
           <BrandMark priority />
         </Link>
-        <nav className="hidden items-center gap-5 text-sm font-extrabold uppercase tracking-wider md:flex">
+        <nav className="hidden items-center gap-5 text-sm font-semibold md:flex">
           {nav.map((item) => (
             <Link key={item.href} href={item.href} className="hover:text-hot">
               {item.label}
@@ -39,7 +39,7 @@ export function SiteHeader() {
           {site.cta_primary}
         </a>
       </div>
-      <nav className="flex items-center justify-around border-t border-ink/30 px-2 py-2 text-xs font-extrabold uppercase tracking-wider md:hidden">
+      <nav className="flex items-center justify-around border-t border-ink/30 px-2 py-2 text-sm font-semibold md:hidden">
         {nav.map((item) => (
           <Link key={item.href} href={item.href}>
             {item.label}

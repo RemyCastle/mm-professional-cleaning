@@ -4,7 +4,7 @@ import { useLive } from "@/components/live-public"
 
 function Stars({ n }: { n: number }) {
   return (
-    <p className="text-sm font-extrabold tracking-wide" aria-label={`${n} stars`}>
+    <p className="text-sm font-semibold" aria-label={`${n} stars`}>
       {"★".repeat(n)}
       {"☆".repeat(5 - n)}
     </p>
@@ -24,7 +24,7 @@ export function ReviewsBlock() {
               <blockquote className="work-cap pl-4">
                 <Stars n={review.stars} />
                 <p className="mt-2 text-xl font-medium">{review.text}</p>
-                <footer className="mt-3 font-extrabold">{review.name}</footer>
+                <footer className="mt-3 font-semibold">{review.name}</footer>
               </blockquote>
             </li>
           ))}

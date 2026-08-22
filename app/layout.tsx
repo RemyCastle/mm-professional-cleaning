@@ -1,14 +1,21 @@
 import type { Metadata } from "next"
-import { Great_Vibes, Manrope } from "next/font/google"
+import { Cormorant_Garamond, Great_Vibes, Nunito } from "next/font/google"
 
 import { marks, site } from "@/lib/site"
 
 import "./globals.css"
 
-const manrope = Manrope({
+const nunito = Nunito({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-manrope",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-nunito",
+})
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
 })
 
 const greatVibes = Great_Vibes({
@@ -68,7 +75,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${manrope.variable} ${greatVibes.variable} h-full`}>
+    <html lang="en" className={`${nunito.variable} ${cormorant.variable} ${greatVibes.variable} h-full`}>
       <body className="min-h-full bg-ground text-ink">{children}</body>
     </html>
   )

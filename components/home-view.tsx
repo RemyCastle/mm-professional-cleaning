@@ -38,7 +38,7 @@ export function HomeView() {
 
       <section className="border-t border-ink/25">
         <div className="mx-auto max-w-5xl px-4 py-12">
-          <h2 className="text-5xl">Work</h2>
+          <h2 className="text-5xl">Services</h2>
           <ServiceLines />
         </div>
       </section>
@@ -46,6 +46,7 @@ export function HomeView() {
       {hasWork ? (
         <section id="photos" className="border-t border-ink/25">
           <div className="mx-auto max-w-5xl px-4 py-12">
+            <h2 className="text-5xl">Work</h2>
             <WorkCompares />
             <WorkStack />
           </div>

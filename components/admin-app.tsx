@@ -92,7 +92,7 @@ export function AdminApp() {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="text-5xl">Admin</h1>
-          <p className="mt-1 font-extrabold">{me?.name}</p>
+          <p className="mt-1 font-semibold">{me?.name}</p>
         </div>
         <button
           type="button"
@@ -122,7 +122,7 @@ export function AdminApp() {
           </button>
         ))}
       </div>
-      {note ? <p className="mt-4 font-extrabold">{note}</p> : null}
+      {note ? <p className="mt-4 font-semibold">{note}</p> : null}
       {tab === "site" ? <SiteTab onNote={setNote} /> : null}
       {tab === "requests" ? <RequestsTab onNote={setNote} /> : null}
       {tab === "photos" ? <PhotosTab onNote={setNote} /> : null}
@@ -174,11 +174,11 @@ function AuthForm({
         }
       }}
     >
-      <label className="flex flex-col gap-1 text-sm font-extrabold uppercase">
+      <label className="flex flex-col gap-1 text-sm font-semibold">
         Name
         <input name="name" required className="field-ink" autoComplete="username" />
       </label>
-      <label className="flex flex-col gap-1 text-sm font-extrabold uppercase">
+      <label className="flex flex-col gap-1 text-sm font-semibold">
         Password
         <input
           name="password"
@@ -192,7 +192,7 @@ function AuthForm({
       <button type="submit" className="cta cta-call w-fit" style={{ minHeight: "44px" }}>
         {submit}
       </button>
-      {error ? <p className="font-extrabold">{error}</p> : null}
+      {error ? <p className="font-semibold">{error}</p> : null}
     </form>
   )
 }
@@ -210,7 +210,7 @@ function SiteTab({ onNote }: { onNote: (n: string) => void }) {
   }, [onNote])
   if (!site) return <p className="mt-6">Loading site…</p>
   const field = (key: keyof LiveSite, label: string, rows = 1) => (
-    <label className="flex flex-col gap-1 text-sm font-extrabold uppercase">
+    <label className="flex flex-col gap-1 text-sm font-semibold">
       {label}
       {rows > 1 ? (
         <textarea
@@ -319,7 +319,7 @@ function RequestsTab({ onNote }: { onNote: (n: string) => void }) {
         <thead className="bg-hot text-mute">
           <tr>
             {["When", "Name", "Phone", "Email", "Message", "Photos", "Status"].map((h) => (
-              <th key={h} className="border-2 border-mute px-2 py-2 font-extrabold uppercase">
+              <th key={h} className="border-2 border-mute px-2 py-2 font-semibold">
                 {h}
               </th>
             ))}
@@ -407,7 +407,7 @@ function JobTypeFields({
   }
   return (
     <div className="flex flex-col gap-2">
-      <label className="flex flex-col gap-1 text-sm font-extrabold uppercase">
+      <label className="flex flex-col gap-1 text-sm font-semibold">
         Job type
         <select
           className="field-ink"
@@ -511,16 +511,16 @@ function PairsBlock({
           }
         }}
       >
-        <label className="flex flex-col gap-1 text-sm font-extrabold uppercase">
+        <label className="flex flex-col gap-1 text-sm font-semibold">
           Before
           <input name="before" type="file" accept="image/*" required className="field-ink py-2" />
         </label>
-        <label className="flex flex-col gap-1 text-sm font-extrabold uppercase">
+        <label className="flex flex-col gap-1 text-sm font-semibold">
           After
           <input name="after" type="file" accept="image/*" required className="field-ink py-2" />
         </label>
         <JobTypeFields services={services} />
-        <label className="flex items-center gap-2 font-extrabold">
+        <label className="flex items-center gap-2 font-semibold">
           <input name="visible" type="checkbox" value="1" className="size-5 accent-hot" />
           Show on Work
         </label>
@@ -541,9 +541,9 @@ function PairsBlock({
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={pair.before_src} alt="Before" className="h-auto w-full" />
                 ) : (
-                  <p className="p-3 font-extrabold">Missing Before</p>
+                  <p className="p-3 font-semibold">Missing Before</p>
                 )}
-                <p className="border-t-4 border-mute px-2 py-1 text-sm font-extrabold uppercase">
+                <p className="border-t-4 border-mute px-2 py-1 text-sm font-semibold">
                   Before
                 </p>
               </div>
@@ -552,16 +552,16 @@ function PairsBlock({
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={pair.after_src} alt="After" className="h-auto w-full" />
                 ) : (
-                  <p className="p-3 font-extrabold">Missing After</p>
+                  <p className="p-3 font-semibold">Missing After</p>
                 )}
-                <p className="border-t-4 border-mute px-2 py-1 text-sm font-extrabold uppercase">
+                <p className="border-t-4 border-mute px-2 py-1 text-sm font-semibold">
                   After
                 </p>
               </div>
             </div>
             <div className="flex flex-col gap-2 border-t-4 border-mute p-3">
               {!complete ? (
-                <p className="font-extrabold">Hidden on Work — this pair is missing a photo.</p>
+                <p className="font-semibold">Hidden on Work — this pair is missing a photo.</p>
               ) : null}
               <JobTypeFields
                 services={services}
@@ -580,7 +580,7 @@ function PairsBlock({
                   })
                 }}
               />
-              <label className="flex items-center gap-2 font-extrabold">
+              <label className="flex items-center gap-2 font-semibold">
                 <input
                   type="checkbox"
                   className="size-5 accent-hot"
@@ -697,7 +697,7 @@ function PhotosTab({ onNote }: { onNote: (n: string) => void }) {
         }}
       >
         <JobTypeFields services={services} />
-        <label className="flex flex-col gap-1 text-sm font-extrabold uppercase">
+        <label className="flex flex-col gap-1 text-sm font-semibold">
           Photo
           <input name="file" type="file" accept="image/*" className="field-ink py-2" />
         </label>
@@ -711,7 +711,7 @@ function PhotosTab({ onNote }: { onNote: (n: string) => void }) {
             // eslint-disable-next-line @next/next/no-img-element
             <img src={photo.src} alt={photo.alt || photo.caption} className="h-auto w-full" />
           ) : (
-            <p className="p-3 font-extrabold">Hidden on Work — no photo yet.</p>
+            <p className="p-3 font-semibold">Hidden on Work — no photo yet.</p>
           )}
           <figcaption className="flex flex-col gap-2 border-t-4 border-mute p-3">
             <JobTypeFields
@@ -831,11 +831,11 @@ function ReviewsTab({ onNote }: { onNote: (n: string) => void }) {
           }
         }}
       >
-        <label className="flex flex-col gap-1 text-sm font-extrabold uppercase">
+        <label className="flex flex-col gap-1 text-sm font-semibold">
           Name
           <input name="name" required className="field-ink" />
         </label>
-        <label className="flex flex-col gap-1 text-sm font-extrabold uppercase">
+        <label className="flex flex-col gap-1 text-sm font-semibold">
           Stars
           <select name="stars" required defaultValue="5" className="field-ink">
             {[5, 4, 3, 2, 1].map((n) => (
@@ -845,11 +845,11 @@ function ReviewsTab({ onNote }: { onNote: (n: string) => void }) {
             ))}
           </select>
         </label>
-        <label className="flex flex-col gap-1 text-sm font-extrabold uppercase">
+        <label className="flex flex-col gap-1 text-sm font-semibold">
           Quote
           <textarea name="text" required rows={4} className="field-ink" />
         </label>
-        <label className="flex items-center gap-2 font-extrabold">
+        <label className="flex items-center gap-2 font-semibold">
           <input name="featured" type="checkbox" value="1" className="size-5 accent-hot" />
           Featured
         </label>
@@ -862,7 +862,7 @@ function ReviewsTab({ onNote }: { onNote: (n: string) => void }) {
       ) : null}
       {reviews.map((review, index) => (
         <article key={review.id} className="vinyl flex flex-col gap-3 p-4">
-          <label className="flex flex-col gap-1 text-sm font-extrabold uppercase">
+          <label className="flex flex-col gap-1 text-sm font-semibold">
             Name
             <input
               className="field-ink"
@@ -878,7 +878,7 @@ function ReviewsTab({ onNote }: { onNote: (n: string) => void }) {
               }}
             />
           </label>
-          <label className="flex flex-col gap-1 text-sm font-extrabold uppercase">
+          <label className="flex flex-col gap-1 text-sm font-semibold">
             Stars
             <select
               className="field-ink"
@@ -899,7 +899,7 @@ function ReviewsTab({ onNote }: { onNote: (n: string) => void }) {
               ))}
             </select>
           </label>
-          <label className="flex flex-col gap-1 text-sm font-extrabold uppercase">
+          <label className="flex flex-col gap-1 text-sm font-semibold">
             Quote
             <textarea
               className="field-ink"
@@ -916,7 +916,7 @@ function ReviewsTab({ onNote }: { onNote: (n: string) => void }) {
               }}
             />
           </label>
-          <label className="flex items-center gap-2 font-extrabold">
+          <label className="flex items-center gap-2 font-semibold">
             <input
               type="checkbox"
               className="size-5 accent-hot"
@@ -964,7 +964,7 @@ function UsersTab({ me, onNote }: { me: Admin | null; onNote: (n: string) => voi
       <ul className="flex flex-col gap-2">
         {users.map((user) => (
           <li key={user.id} className="vinyl flex items-center justify-between gap-3 p-3">
-            <span className="font-extrabold">{user.name}</span>
+            <span className="font-semibold">{user.name}</span>
             <button
               type="button"
               className="admin-mini"

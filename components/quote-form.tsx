@@ -40,11 +40,11 @@ export function QuoteForm() {
 
   return (
     <form onSubmit={onSubmit} className="flex max-w-xl flex-col gap-4" encType="multipart/form-data">
-      <label className="flex flex-col gap-1 text-sm font-extrabold uppercase tracking-wide">
+      <label className="flex flex-col gap-1 text-sm font-semibold">
         Name
         <input id="quote-name" name="name" autoComplete="name" required className="field-ink" />
       </label>
-      <label className="flex flex-col gap-1 text-sm font-extrabold uppercase tracking-wide">
+      <label className="flex flex-col gap-1 text-sm font-semibold">
         Phone
         <input
           id="quote-phone"
@@ -54,7 +54,7 @@ export function QuoteForm() {
           className="field-ink"
         />
       </label>
-      <label className="flex flex-col gap-1 text-sm font-extrabold uppercase tracking-wide">
+      <label className="flex flex-col gap-1 text-sm font-semibold">
         Email
         <input
           id="quote-email"
@@ -64,11 +64,11 @@ export function QuoteForm() {
           className="field-ink"
         />
       </label>
-      <label className="flex flex-col gap-1 text-sm font-extrabold uppercase tracking-wide">
+      <label className="flex flex-col gap-1 text-sm font-semibold">
         Message
         <textarea id="quote-job" name="need" required rows={4} className="field-ink" />
       </label>
-      <label className="flex flex-col gap-1 text-sm font-extrabold uppercase tracking-wide">
+      <label className="flex flex-col gap-1 text-sm font-semibold">
         {site.quote_photos}
         <input
           id="quote-photos"
@@ -83,7 +83,7 @@ export function QuoteForm() {
         {status === "sending" ? "Sending" : site.quote_submit}
       </button>
       <p className="text-sm font-semibold">{site.quote_helper}</p>
-      {message ? <p className="text-sm font-extrabold">{message}</p> : null}
+      {message ? <p className="text-sm font-semibold">{message}</p> : null}
     </form>
   )
 }

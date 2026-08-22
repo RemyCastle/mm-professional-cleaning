@@ -10,9 +10,9 @@
   --color-hot: #f2c344;
   --color-mute: #3d7a52;
   --color-paper: #fafcfa;
-  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
-  --font-heading: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-cormorant), ui-serif, Georgia, serif;
+  --font-display: var(--font-cormorant), ui-serif, Georgia, serif;
   --font-script: var(--font-great-vibes), cursive;
   --color-primary: #f2c344;
   --color-primary-foreground: #3d7a52;
@@ -38,7 +38,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
     background: #66c178;
     color: #fafcfa;
   }
@@ -46,16 +46,22 @@
   body {
     background: #66c178;
     color: #fafcfa;
+    font-weight: 500;
   }
 
   h1,
   h2,
   h3,
   h4 {
-    font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 1.05;
+    font-family: var(--font-cormorant), ui-serif, Georgia, serif;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.15;
+  }
+
+  h1 {
+    font-style: italic;
+    font-weight: 500;
   }
 
   a {
@@ -83,11 +89,11 @@
   min-height: 3.25rem;
   padding: 0.4rem 1.2rem;
   border: 3px solid #f2c344;
-  font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
-  font-size: 1.15rem;
-  font-weight: 800;
+  font-family: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
   line-height: 1;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
   text-decoration: none;
 }
 
@@ -109,7 +115,7 @@
   border: 3px solid #f2c344;
   background: #fafcfa;
   padding: 0.5rem 0.7rem;
-  font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
   font-size: 1rem;
   color: #3d7a52;
 }
@@ -120,8 +126,10 @@
 }
 
 .work-cap {
+  font-family: var(--font-cormorant), ui-serif, Georgia, serif;
+  font-weight: 600;
   text-transform: none;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
   border-left: 10px solid #f2c344;
 }
 
@@ -130,11 +138,11 @@
   border: 3px solid #f2c344;
   background: #fafcfa;
   color: #3d7a52;
-  font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
   font-size: 1rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .admin-tab-on {
@@ -149,8 +157,8 @@
   border: 3px solid #f2c344;
   background: #fafcfa;
   color: #3d7a52;
-  font-weight: 800;
-  text-transform: uppercase;
+  font-weight: 700;
+  text-transform: none;
 }
 
 .stripe {
@@ -214,9 +222,9 @@
   border: 3px solid #3d7a52;
   background: #f2c344;
   color: #3d7a52;
-  font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
   font-size: 1.1rem;
-  font-weight: 800;
+  font-weight: 700;
   transform: translate(-50%, -50%);
 }
 
@@ -228,11 +236,11 @@
   background: #fafcfa;
   color: #3d7a52;
   padding: 0.15rem 0.45rem;
-  font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
   font-size: 0.85rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
   pointer-events: none;
 }
 

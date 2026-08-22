@@ -69,7 +69,7 @@ Look only. Voice copy still wins on words.
 
 Not Sharky `#3F8C10`. Not Solid Craft charcoal/brass.
 
-Great Vibes for **M & M** only. Manrope for PROFESSIONAL CLEANING and UI. Never Big Shoulders, Libre Franklin, Teko, or Cinzel.
+Great Vibes for **M & M** only. Nunito for body and UI. Cormorant Garamond for headings (H1 italic). Never Manrope, Big Shoulders, Libre Franklin, Teko, or Cinzel.
 
 - `public/logo.jpeg` — Remy's exact logo (woman + broom + real M & M script). Header and hero. Do not redraw, crop, or remap.
 - `marks.logo` and `marks.logoMark` both point at `/logo.jpeg`.
