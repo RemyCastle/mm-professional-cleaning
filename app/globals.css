@@ -3,58 +3,56 @@
 @import "shadcn/tailwind.css";
 
 @theme inline {
-  --color-background: #4db6a6;
-  --color-foreground: #ffffff;
-  --color-ground: #4db6a6;
-  --color-mint: #4db6a6;
-  --color-mint-deep: #2f8f82;
-  --color-ink: #16332e;
-  --color-hot: #f5d23a;
-  --color-deep: #1a3d38;
-  --color-steel: #24564e;
-  --color-paper: #ffffff;
-  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
-  --font-heading: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
-  --color-primary: #f5d23a;
-  --color-primary-foreground: #16332e;
-  --color-border: #f5d23a;
-  --color-input: #16332e;
-  --color-ring: #f5d23a;
+  --color-background: #66c178;
+  --color-foreground: #fafcfa;
+  --color-ground: #66c178;
+  --color-ink: #fafcfa;
+  --color-hot: #f2c344;
+  --color-mute: #3d7a52;
+  --color-paper: #fafcfa;
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-script: var(--font-great-vibes), cursive;
+  --color-primary: #f2c344;
+  --color-primary-foreground: #3d7a52;
+  --color-border: #f2c344;
+  --color-input: #3d7a52;
+  --color-ring: #f2c344;
   --radius-sm: 0.25rem;
   --radius-md: 0.4rem;
   --radius-lg: 0.6rem;
 }
 
 :root {
-  --background: #4db6a6;
-  --foreground: #ffffff;
-  --primary: #f5d23a;
-  --primary-foreground: #16332e;
-  --border: #f5d23a;
-  --input: #16332e;
-  --ring: #f5d23a;
+  --background: #66c178;
+  --foreground: #fafcfa;
+  --primary: #f2c344;
+  --primary-foreground: #3d7a52;
+  --border: #f2c344;
+  --input: #3d7a52;
+  --ring: #f2c344;
   --radius: 0.4rem;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
-    background: #4db6a6;
-    color: #ffffff;
+    font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+    background: #66c178;
+    color: #fafcfa;
   }
 
   body {
-    background: #4db6a6;
-    color: #ffffff;
+    background: #66c178;
+    color: #fafcfa;
   }
 
   h1,
   h2,
   h3,
   h4 {
-    font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
     font-weight: 800;
     letter-spacing: -0.02em;
     line-height: 1.05;
@@ -65,10 +63,17 @@
   }
 }
 
+.script {
+  font-family: var(--font-great-vibes), cursive;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
 .vinyl {
-  background: #ffffff;
-  color: #16332e;
-  border: 3px solid #f5d23a;
+  background: #fafcfa;
+  color: #3d7a52;
+  border: 3px solid #3d7a52;
 }
 
 .cta {
@@ -77,8 +82,8 @@
   justify-content: center;
   min-height: 3.25rem;
   padding: 0.4rem 1.2rem;
-  border: 3px solid #f5d23a;
-  font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  border: 3px solid #f2c344;
+  font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
   font-size: 1.15rem;
   font-weight: 800;
   line-height: 1;
@@ -87,45 +92,45 @@
 }
 
 .cta-call {
-  background: #f5d23a;
-  color: #16332e;
-  border-color: #f5d23a;
+  background: #f2c344;
+  color: #3d7a52;
+  border-color: #f2c344;
 }
 
 .cta-mail {
-  background: #ffffff;
-  color: #16332e;
-  border-color: #ffffff;
+  background: transparent;
+  color: #fafcfa;
+  border-color: #f2c344;
 }
 
 .field-ink {
   width: 100%;
   min-height: 3rem;
-  border: 3px solid #16332e;
-  background: #ffffff;
+  border: 3px solid #f2c344;
+  background: #fafcfa;
   padding: 0.5rem 0.7rem;
-  font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
   font-size: 1rem;
-  color: #16332e;
+  color: #3d7a52;
 }
 
 .field-ink:focus {
-  outline: 3px solid #f5d23a;
+  outline: 3px solid #f2c344;
   outline-offset: 0;
 }
 
 .work-cap {
   text-transform: none;
   letter-spacing: 0.01em;
-  border-left: 10px solid #f5d23a;
+  border-left: 10px solid #f2c344;
 }
 
 .admin-tab {
   min-height: 44px;
-  border: 3px solid #16332e;
-  background: #ffffff;
-  color: #16332e;
-  font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  border: 3px solid #f2c344;
+  background: #fafcfa;
+  color: #3d7a52;
+  font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
   font-size: 1rem;
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -133,24 +138,24 @@
 }
 
 .admin-tab-on {
-  background: #f5d23a;
-  color: #16332e;
-  border-color: #f5d23a;
+  background: #f2c344;
+  color: #3d7a52;
+  border-color: #f2c344;
 }
 
 .admin-mini {
   min-height: 44px;
   padding: 0 0.8rem;
-  border: 3px solid #16332e;
-  background: #ffffff;
-  color: #16332e;
+  border: 3px solid #f2c344;
+  background: #fafcfa;
+  color: #3d7a52;
   font-weight: 800;
   text-transform: uppercase;
 }
 
 .stripe {
   height: 10px;
-  background: #f5d23a;
+  background: #f2c344;
 }
 
 .compare {
@@ -192,7 +197,7 @@
   bottom: 0;
   z-index: 2;
   width: 4px;
-  background: #f5d23a;
+  background: #f2c344;
   transform: translateX(-50%);
   pointer-events: none;
 }
@@ -206,10 +211,10 @@
   min-height: 44px;
   align-items: center;
   justify-content: center;
-  border: 3px solid #16332e;
-  background: #f5d23a;
-  color: #16332e;
-  font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  border: 3px solid #3d7a52;
+  background: #f2c344;
+  color: #3d7a52;
+  font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
   font-size: 1.1rem;
   font-weight: 800;
   transform: translate(-50%, -50%);
@@ -219,11 +224,11 @@
   position: absolute;
   bottom: 0.7rem;
   z-index: 2;
-  border: 3px solid #16332e;
-  background: #ffffff;
-  color: #16332e;
+  border: 3px solid #f2c344;
+  background: #fafcfa;
+  color: #3d7a52;
   padding: 0.15rem 0.45rem;
-  font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
   font-size: 0.85rem;
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -241,8 +246,8 @@
 
 .compare-control {
   display: block;
-  border-top: 3px solid #f5d23a;
-  background: #ffffff;
+  border-top: 3px solid #f2c344;
+  background: #fafcfa;
   padding: 0.45rem 0.7rem;
 }
 
@@ -251,7 +256,7 @@
   width: 100%;
   height: 44px;
   margin: 0;
-  accent-color: #f5d23a;
+  accent-color: #f2c344;
   cursor: ew-resize;
 }
 

@@ -15,7 +15,7 @@ const nav = [
 export function SiteHeader() {
   const { site } = useLive()
   return (
-    <header className="sticky top-0 z-40 bg-ground text-white">
+    <header className="sticky top-0 z-40 bg-ground text-ink">
       <div className="stripe" />
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-2">
         <Link href="/" className="shrink-0">
@@ -39,7 +39,7 @@ export function SiteHeader() {
           {site.cta_primary}
         </a>
       </div>
-      <nav className="flex items-center justify-around border-t border-white/30 px-2 py-2 text-xs font-extrabold uppercase tracking-wider md:hidden">
+      <nav className="flex items-center justify-around border-t border-ink/30 px-2 py-2 text-xs font-extrabold uppercase tracking-wider md:hidden">
         {nav.map((item) => (
           <Link key={item.href} href={item.href}>
             {item.label}

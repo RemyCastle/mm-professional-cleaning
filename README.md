@@ -59,8 +59,17 @@ No street. No owner name. No CCB. No hours. No prices. No reviews. No extra trad
 
 ## Look
 
-Mint/seafoam ground `#4DB6A6`. White type. Yellow `#F5D23A` for the CTA and stripe. Not Sharky lime. Not Solid Craft charcoal.
+Look only. Voice copy still wins on words.
 
-- `public/source/logo.jpeg` — printed logo slide (do not redraw)
-- `public/logo.jpeg` — that logo on mint, hero
-- `public/logo-mark.png` — crop of that logo for chrome
+- Ground `#66C178`
+- Ink `#FAFCFA`
+- Hot `#F2C344` — the only accent (buttons, stripe)
+- Mute `#3D7A52`
+
+Not Sharky `#3F8C10`. Not Solid Craft charcoal/brass.
+
+Great Vibes for **M & M** only. Manrope for PROFESSIONAL CLEANING and UI. Never Big Shoulders, Libre Franklin, Teko, or Cinzel.
+
+- `public/source/logo-mark.jpg` — attached mark (woman + broom + script). Crop only. Do not redraw.
+- `public/logo.jpeg` — that crop on mint, hero. No gold or charcoal frame.
+- `public/logo-mark.png` — same crop for chrome

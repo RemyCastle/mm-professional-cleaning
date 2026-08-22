@@ -9,12 +9,12 @@ export function ThumbDock() {
     <nav
       data-thumb-dock
       aria-label="Call, text, or email"
-      className="fixed inset-x-0 bottom-0 z-50 border-t-4 border-hot bg-ground text-white pb-[env(safe-area-inset-bottom,0px)] md:hidden"
+      className="fixed inset-x-0 bottom-0 z-50 border-t-4 border-hot bg-ground text-ink pb-[env(safe-area-inset-bottom,0px)] md:hidden"
     >
       <div className="grid grid-cols-3">
         <a
           href={phoneTel(site.phone_display)}
-          className="flex min-h-16 flex-col items-center justify-center bg-hot px-1 py-2 text-center text-ink"
+          className="flex min-h-16 flex-col items-center justify-center bg-hot px-1 py-2 text-center text-mute"
         >
           <span className="text-xl font-extrabold uppercase leading-none">Call</span>
           <span className="text-[10px] font-extrabold">{site.phone_display}</span>

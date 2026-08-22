@@ -131,7 +131,7 @@ export function AdminApp() {
 
 function AdminShell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="mx-auto flex max-w-5xl flex-col gap-4 px-4 py-6 text-white">
+    <div className="mx-auto flex max-w-5xl flex-col gap-4 px-4 py-6 text-ink">
       <div className="stripe -mx-4" />
       <BrandMark />
       {children}
@@ -312,11 +312,11 @@ function RequestsTab({ onNote }: { onNote: (n: string) => void }) {
   }, [load])
   return (
     <div className="mt-6 overflow-x-auto">
-      <table className="w-full min-w-[40rem] border-4 border-ink bg-white text-left text-sm text-ink">
-        <thead className="bg-hot text-ink">
+      <table className="w-full min-w-[40rem] border-4 border-mute bg-paper text-left text-sm text-mute">
+        <thead className="bg-hot text-mute">
           <tr>
             {["When", "Name", "Phone", "Email", "Message", "Photos", "Status"].map((h) => (
-              <th key={h} className="border-2 border-ink px-2 py-2 font-extrabold uppercase">
+              <th key={h} className="border-2 border-mute px-2 py-2 font-extrabold uppercase">
                 {h}
               </th>
             ))}
@@ -325,12 +325,12 @@ function RequestsTab({ onNote }: { onNote: (n: string) => void }) {
         <tbody>
           {leads.map((lead) => (
             <tr key={lead.id}>
-              <td className="border-2 border-ink px-2 py-2">{lead.created_at}</td>
-              <td className="border-2 border-ink px-2 py-2">{lead.name}</td>
-              <td className="border-2 border-ink px-2 py-2">{lead.phone || "—"}</td>
-              <td className="border-2 border-ink px-2 py-2">{lead.email || "—"}</td>
-              <td className="border-2 border-ink px-2 py-2">{lead.need}</td>
-              <td className="border-2 border-ink px-2 py-2">
+              <td className="border-2 border-mute px-2 py-2">{lead.created_at}</td>
+              <td className="border-2 border-mute px-2 py-2">{lead.name}</td>
+              <td className="border-2 border-mute px-2 py-2">{lead.phone || "—"}</td>
+              <td className="border-2 border-mute px-2 py-2">{lead.email || "—"}</td>
+              <td className="border-2 border-mute px-2 py-2">{lead.need}</td>
+              <td className="border-2 border-mute px-2 py-2">
                 {lead.files?.length ? (
                   <div className="flex flex-wrap gap-2">
                     {lead.files.map((src) => (
@@ -346,7 +346,7 @@ function RequestsTab({ onNote }: { onNote: (n: string) => void }) {
                   "No"
                 )}
               </td>
-              <td className="border-2 border-ink px-2 py-2">
+              <td className="border-2 border-mute px-2 py-2">
                 <select
                   className="field-ink min-h-11"
                   value={lead.status}
@@ -533,14 +533,14 @@ function PairsBlock({
         return (
           <article key={pair.id} className="vinyl overflow-hidden">
             <div className="grid grid-cols-2">
-              <div className="border-r-4 border-ink">
+              <div className="border-r-4 border-mute">
                 {pair.before_src ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={pair.before_src} alt="Before" className="h-auto w-full" />
                 ) : (
                   <p className="p-3 font-extrabold">Missing Before</p>
                 )}
-                <p className="border-t-4 border-ink px-2 py-1 text-sm font-extrabold uppercase">
+                <p className="border-t-4 border-mute px-2 py-1 text-sm font-extrabold uppercase">
                   Before
                 </p>
               </div>
@@ -551,12 +551,12 @@ function PairsBlock({
                 ) : (
                   <p className="p-3 font-extrabold">Missing After</p>
                 )}
-                <p className="border-t-4 border-ink px-2 py-1 text-sm font-extrabold uppercase">
+                <p className="border-t-4 border-mute px-2 py-1 text-sm font-extrabold uppercase">
                   After
                 </p>
               </div>
             </div>
-            <div className="flex flex-col gap-2 border-t-4 border-ink p-3">
+            <div className="flex flex-col gap-2 border-t-4 border-mute p-3">
               {!complete ? (
                 <p className="font-extrabold">Hidden on Work — this pair is missing a photo.</p>
               ) : null}
@@ -710,7 +710,7 @@ function PhotosTab({ onNote }: { onNote: (n: string) => void }) {
           ) : (
             <p className="p-3 font-extrabold">Hidden on Work — no photo yet.</p>
           )}
-          <figcaption className="flex flex-col gap-2 border-t-4 border-ink p-3">
+          <figcaption className="flex flex-col gap-2 border-t-4 border-mute p-3">
             <JobTypeFields
               services={services}
               value={photo.caption}

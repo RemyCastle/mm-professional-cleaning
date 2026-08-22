@@ -9,7 +9,7 @@ export function WorkStack() {
   return (
     <div className="mt-8 flex max-w-xl flex-col gap-6">
       {shown.map((photo, index) => (
-        <figure key={photo.src + String(photo.id ?? index)} className="vinyl overflow-hidden">
+        <figure key={photo.src + String(photo.id ?? index)} className="overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={photo.src}
@@ -21,9 +21,7 @@ export function WorkStack() {
             decoding="async"
           />
           {photo.caption.trim() ? (
-            <figcaption className="work-cap border-t-4 border-ink px-3 py-2 font-display text-2xl">
-              {photo.caption}
-            </figcaption>
+            <figcaption className="work-cap mt-3 px-1 text-2xl">{photo.caption}</figcaption>
           ) : null}
         </figure>
       ))}

@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Crop M & M chrome from the printed logo slide.
+"""Crop M & M chrome from the attached logo-mark.
 
-Prefers public/source/logo.jpeg (the attached last slide).
-Do not redraw that artwork. This script only crops and resizes.
+Prefers public/source/logo-mark.jpg (woman + broom + script).
+Do not redraw that artwork. This script only crops, remaps old mint
+to the Look ground, and resizes.
 """
 
 from __future__ import annotations
@@ -17,9 +18,21 @@ SOURCE = PUBLIC / "source"
 SOURCE.mkdir(parents=True, exist_ok=True)
 PUBLIC.mkdir(exist_ok=True)
 
-MINT = (77, 182, 166, 255)
+# Look bible
+GROUND = (0x66, 0xC1, 0x78, 255)
+INK = (0xFA, 0xFC, 0xFA, 255)
+HOT = (0xF2, 0xC3, 0x44, 255)
+
+# Previous reconstruction / wrong mint — remap, do not keep
+OLD_GROUND = (77, 182, 167)
+OLD_HOT = (245, 210, 58)
+OLD_INK = (255, 255, 255)
 
 CANDIDATES = [
+    SOURCE / "logo-mark.jpg",
+    SOURCE / "logo-mark.jpeg",
+    SOURCE / "logo-mark.png",
+    PUBLIC / "logo-mark.jpg",
     SOURCE / "logo.jpeg",
     SOURCE / "logo.jpg",
     SOURCE / "logo.png",
@@ -30,8 +43,7 @@ CANDIDATES = [
 def load_logo() -> Image.Image:
     for path in CANDIDATES:
         if path.exists():
-            img = Image.open(path).convert("RGBA")
-            return img
+            return Image.open(path).convert("RGBA")
     import subprocess
     import sys
 
@@ -40,11 +52,11 @@ def load_logo() -> Image.Image:
         if path.exists():
             return Image.open(path).convert("RGBA")
     raise FileNotFoundError(
-        "Missing public/source/logo.jpeg. Put the attached logo slide there and run again."
+        "Missing public/source/logo-mark.jpg. Put the attached mark there and run again."
     )
 
 
-def sample_ground(img: Image.Image) -> tuple[int, int, int, 255]:
+def sample_ground(img: Image.Image) -> tuple[int, int, int, int]:
     w, h = img.size
     pixels = [
         img.getpixel((4, 4)),
@@ -59,6 +71,43 @@ def sample_ground(img: Image.Image) -> tuple[int, int, int, 255]:
     return (r, g, b, 255)
 
 
+def dist(a: tuple[int, ...], b: tuple[int, ...]) -> float:
+    return ((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2 + (a[2] - b[2]) ** 2) ** 0.5
+
+
+def looks_like_old_mint(color: tuple[int, ...]) -> bool:
+    return dist(color, OLD_GROUND) < 36 or (
+        55 <= color[0] <= 115 and 155 <= color[1] <= 205 and 140 <= color[2] <= 195
+    )
+
+
+def remap_look(img: Image.Image) -> Image.Image:
+    """If the source still sits on the old teal, lift it onto Look ground.
+
+    Figure, hair, broom, and script stay. Only the old plate and the old
+    yellow / white inks move.
+    """
+    ground = sample_ground(img)
+    if not looks_like_old_mint(ground):
+        return img
+
+    src = img.convert("RGBA")
+    px = src.load()
+    w, h = src.size
+    for y in range(h):
+        for x in range(w):
+            r, g, b, a = px[x, y]
+            if a == 0:
+                continue
+            if looks_like_old_mint((r, g, b)):
+                px[x, y] = GROUND
+            elif dist((r, g, b), OLD_HOT) < 42 or (r > 220 and g > 175 and b < 100):
+                px[x, y] = HOT
+            elif min(r, g, b) > 232:
+                px[x, y] = INK
+    return src
+
+
 def fit_square(src: Image.Image, size: int, background: tuple[int, int, int, int]) -> Image.Image:
     canvas = Image.new("RGBA", (size, size), background)
     fitted = src.copy()
@@ -70,7 +119,7 @@ def fit_square(src: Image.Image, size: int, background: tuple[int, int, int, int
 
 
 def crop_mark(img: Image.Image) -> Image.Image:
-    """Use the full printed lockup. Square crop from the mint ground."""
+    """Square crop from the mint ground. Woman + broom + script stay."""
     w, h = img.size
     side = min(w, h)
     left = (w - side) // 2
@@ -78,17 +127,23 @@ def crop_mark(img: Image.Image) -> Image.Image:
     return img.crop((left, top, left + side, top + side))
 
 
+def flatten(img: Image.Image, ground: tuple[int, int, int, int]) -> Image.Image:
+    plate = Image.new("RGB", img.size, ground[:3])
+    if img.mode == "RGBA":
+        plate.paste(img, mask=img.split()[-1])
+    else:
+        plate.paste(img.convert("RGB"))
+    return plate
+
+
 def main() -> None:
-    src = load_logo()
+    src = remap_look(load_logo())
     ground = sample_ground(src)
+    if looks_like_old_mint(ground):
+        ground = GROUND
     square = crop_mark(src)
 
-    hero = square.copy()
-    if hero.mode != "RGB":
-        plate = Image.new("RGB", hero.size, ground[:3])
-        plate.paste(hero, mask=hero.split()[-1] if hero.mode == "RGBA" else None)
-        hero = plate.convert("RGB")
-    hero.save(PUBLIC / "logo.jpeg", "JPEG", quality=92)
+    flatten(square, ground).save(PUBLIC / "logo.jpeg", "JPEG", quality=92)
 
     mark = fit_square(square, 1024, ground)
     mark.save(PUBLIC / "logo-mark.png", "PNG")

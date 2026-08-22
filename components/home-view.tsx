@@ -16,7 +16,7 @@ export function HomeView() {
   const { site, photos, pairs } = useLive()
   const hasWork = photos.some(photoIsPublic) || pairs.some(pairIsPublic)
   return (
-    <div className="bg-ground text-white">
+    <div className="bg-ground text-ink">
       <section>
         <div className="mx-auto flex max-w-5xl flex-col items-center px-4 py-10 text-center sm:py-14">
           <Image
@@ -36,7 +36,7 @@ export function HomeView() {
         </div>
       </section>
 
-      <section className="border-t border-white/25">
+      <section className="border-t border-ink/25">
         <div className="mx-auto max-w-5xl px-4 py-12">
           <h2 className="text-5xl">Work</h2>
           <ServiceLines />
@@ -44,7 +44,7 @@ export function HomeView() {
       </section>
 
       {hasWork ? (
-        <section id="photos" className="border-t border-white/25">
+        <section id="photos" className="border-t border-ink/25">
           <div className="mx-auto max-w-5xl px-4 py-12">
             <WorkCompares />
             <WorkStack />
@@ -52,7 +52,7 @@ export function HomeView() {
         </section>
       ) : null}
 
-      <section className="border-t border-white/25">
+      <section className="border-t border-ink/25">
         <div className="mx-auto max-w-5xl px-4 py-12">
           <h2 className="text-5xl">About</h2>
           <AboutLines text={site.about} />

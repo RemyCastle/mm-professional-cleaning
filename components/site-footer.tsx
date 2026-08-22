@@ -2,20 +2,17 @@
 
 import Link from "next/link"
 
-import { BrandMark } from "@/components/brand-mark"
 import { useLive } from "@/components/live-public"
+import { Wordmark } from "@/components/wordmark"
 import { emailMailto, phoneTel } from "@/lib/public"
-import { site as locked } from "@/lib/site"
 
 export function SiteFooter() {
   const { site } = useLive()
   return (
-    <footer className="border-t border-white/25 bg-ground text-white">
+    <footer className="border-t border-ink/25 bg-ground text-ink">
       <div className="mx-auto flex max-w-5xl flex-col gap-5 px-4 py-10">
-        <BrandMark className="h-20" />
+        <Wordmark />
         <p className="max-w-2xl text-base font-semibold leading-relaxed">
-          {locked.name}
-          <br />
           {site.towns}
           <br />
           <a

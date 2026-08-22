@@ -5,7 +5,7 @@ import { ServiceLines } from "@/components/service-lines"
 
 export function ServicesView() {
   return (
-    <div className="bg-ground text-white">
+    <div className="bg-ground text-ink">
       <div className="mx-auto max-w-5xl px-4 py-12">
         <h1 className="text-6xl">Work</h1>
         <ServiceLines />

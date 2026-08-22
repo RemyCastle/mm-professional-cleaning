@@ -35,7 +35,7 @@ export function CompareSlider({ pair }: { pair: LivePair }) {
   const afterAlt = caption ? `${caption}, after` : "After"
 
   return (
-    <figure className="vinyl overflow-hidden">
+    <figure className="overflow-hidden">
       <div
         ref={box}
         className="compare"
@@ -83,9 +83,7 @@ export function CompareSlider({ pair }: { pair: LivePair }) {
         />
       </label>
       {caption ? (
-        <figcaption className="work-cap border-t-4 border-ink px-3 py-2 font-display text-2xl">
-          {caption}
-        </figcaption>
+        <figcaption className="work-cap mt-3 px-1 text-2xl">{caption}</figcaption>
       ) : null}
     </figure>
   )

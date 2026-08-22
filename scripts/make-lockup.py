@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Last-resort lockup if the attached logo slide is missing.
+"""Last-resort lockup if the attached logo-mark is missing.
 
-Prefer public/source/logo.jpeg. Do not run this over a real crop.
+Prefer public/source/logo-mark.jpg. Do not run this over a real crop.
 """
 
 from __future__ import annotations
@@ -16,9 +16,10 @@ PUBLIC = ROOT / "public"
 SOURCE = PUBLIC / "source"
 SOURCE.mkdir(parents=True, exist_ok=True)
 
-MINT = (77, 182, 166, 255)
-YELLOW = (245, 210, 58, 255)
-WHITE = (255, 255, 255, 255)
+# Last-resort only. Prefer cropping public/source/logo-mark.jpg.
+MINT = (0x66, 0xC1, 0x78, 255)
+YELLOW = (0xF2, 0xC3, 0x44, 255)
+WHITE = (0xFA, 0xFC, 0xFA, 255)
 HAIR = (28, 24, 30, 255)
 SKIN = (230, 184, 152, 255)
 TAN = (196, 164, 112, 255)
@@ -92,7 +93,10 @@ def draw_woman(draw: ImageDraw.ImageDraw, s: float) -> None:
 
 
 def main() -> None:
-    if (SOURCE / "logo.jpeg").exists():
+    if any(
+        (SOURCE / name).exists()
+        for name in ("logo-mark.jpg", "logo-mark.jpeg", "logo-mark.png", "logo.jpeg")
+    ):
         return
     size = 1200
     s = size / 1000

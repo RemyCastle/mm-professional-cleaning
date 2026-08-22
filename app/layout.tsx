@@ -1,14 +1,20 @@
 import type { Metadata } from "next"
-import { Outfit } from "next/font/google"
+import { Great_Vibes, Manrope } from "next/font/google"
 
 import { marks, site } from "@/lib/site"
 
 import "./globals.css"
 
-const outfit = Outfit({
+const manrope = Manrope({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-outfit",
+  variable: "--font-manrope",
+})
+
+const greatVibes = Great_Vibes({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-great-vibes",
 })
 
 export const metadata: Metadata = {
@@ -62,8 +68,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${outfit.variable} h-full`}>
-      <body className="min-h-full bg-ground">{children}</body>
+    <html lang="en" className={`${manrope.variable} ${greatVibes.variable} h-full`}>
+      <body className="min-h-full bg-ground text-ink">{children}</body>
     </html>
   )
 }

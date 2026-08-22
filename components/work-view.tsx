@@ -11,7 +11,7 @@ export function WorkView() {
   const { photos, pairs } = useLive()
   const hasWork = photos.some(photoIsPublic) || pairs.some(pairIsPublic)
   return (
-    <div className="bg-ground text-white">
+    <div className="bg-ground text-ink">
       <div className="mx-auto max-w-5xl px-4 py-12">
         <h1 className="text-6xl">Work</h1>
         {hasWork ? (
