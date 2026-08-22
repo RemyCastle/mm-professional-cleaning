@@ -1,0 +1,39 @@
+{
+  "name": "mm-professional-cleaning",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "chrome": "python3 -c 'print(\"Do not crop or remap Remy logo. Ship public/logo.jpeg as-is.\")'",
+    "pages:dev": "npm run build && wrangler pages dev ./out",
+    "pages:deploy": "npm run build && wrangler pages deploy out --project-name=mm-professional-cleaning",
+    "db:local": "wrangler d1 execute mm-professional-cleaning --local --file=schema.sql && wrangler d1 execute mm-professional-cleaning --local --file=seed.sql"
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.7.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.33.0",
+    "motion": "^13.1.1",
+    "next": "16.3.2",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "shadcn": "^4.19.0",
+    "tailwind-merge": "^3.6.0",
+    "tw-animate-css": "^1.4.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.2",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "wrangler": "^4.125.0"
+  }
+}
