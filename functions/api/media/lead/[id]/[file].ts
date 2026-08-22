@@ -1,17 +1,12 @@
 import type { Env } from "../../../../../_lib/env"
-import { readSession } from "../../../../../_lib/session"
 
 export async function onRequestGet({
-  request,
   env,
   params,
 }: {
-  request: Request
   env: Env
   params: { id: string; file: string }
 }) {
-  const admin = await readSession(request, env)
-  if (!admin) return new Response("Sign in.", { status: 401 })
   const id = Number(params.id)
   const file = decodeURIComponent(params.file || "")
   if (!id || !file || file.includes("..") || file.includes("/")) {
