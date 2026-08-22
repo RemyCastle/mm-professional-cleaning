@@ -64,15 +64,15 @@ CREATE TABLE IF NOT EXISTS pairs (
 `
 
 const SITE_SEED = {
-  hero_title: "Residential, move-in, deep clean. Call for a free estimate.",
-  hero_lead: "Eugene and Springfield. Ten years at it.",
+  hero_title: "Eugene and Springfield. We clean them.",
+  hero_lead: "Houses, move-in, move-out, after the build, deep clean. Free estimates.",
   about:
-    "We clean homes in Eugene and Springfield.\nTen years at it.\nEstimates are free.\nCall, text, or email.",
+    "M & M Professional Cleaning.\nMore than ten years.\nEugene, Springfield, and surrounding.\nEstimates are free.\nCall, text, or email.",
   phone_display: "(541) 310-0590",
   email: "m.mprofessionalcleaning@yahoo.com",
-  towns: "Eugene/Springfield and surrounding areas",
+  towns: "Eugene / Springfield and surrounding",
   cta_primary: "Call (541) 310-0590",
-  cta_secondary: "Email us",
+  cta_secondary: "Text (541) 310-0590",
   quote_heading: "Free estimate",
   quote_submit: "Send",
   quote_photos: "Photo of the job, optional",
@@ -90,7 +90,32 @@ export async function ready(env: Env) {
   for (const statement of SCHEMA.split(";").map((s) => s.trim()).filter(Boolean)) {
     await env.DB.prepare(statement).run()
   }
-  const site = await env.DB.prepare("SELECT id FROM site WHERE id = 1").first()
+  const site = await env.DB.prepare("SELECT id, hero_title FROM site WHERE id = 1").first<{
+    id: number
+    hero_title: string
+  }>()
+  if (site?.hero_title === "Residential, move-in, deep clean. Call for a free estimate.") {
+    await env.DB.prepare(
+      `UPDATE site SET hero_title=?, hero_lead=?, about=?, phone_display=?, email=?, towns=?,
+        cta_primary=?, cta_secondary=?, quote_heading=?, quote_submit=?, quote_photos=?, quote_helper=?,
+        updated_at=datetime('now') WHERE id = 1`,
+    )
+      .bind(
+        SITE_SEED.hero_title,
+        SITE_SEED.hero_lead,
+        SITE_SEED.about,
+        SITE_SEED.phone_display,
+        SITE_SEED.email,
+        SITE_SEED.towns,
+        SITE_SEED.cta_primary,
+        SITE_SEED.cta_secondary,
+        SITE_SEED.quote_heading,
+        SITE_SEED.quote_submit,
+        SITE_SEED.quote_photos,
+        SITE_SEED.quote_helper,
+      )
+      .run()
+  }
   if (!site) {
     await env.DB.prepare(
       `INSERT INTO site (id, hero_title, hero_lead, about, phone_display, email, towns,

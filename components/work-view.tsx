@@ -1,13 +1,14 @@
 "use client"
 
+import { ContactActions } from "@/components/contact-actions"
 import { useLive } from "@/components/live-public"
 import { WorkCompares } from "@/components/work-compares"
 import { WorkStack } from "@/components/work-stack"
-import { phoneTel, photoIsPublic } from "@/lib/public"
+import { photoIsPublic } from "@/lib/public"
 import { pairIsPublic } from "@/lib/pairs"
 
 export function WorkView() {
-  const { site, photos, pairs } = useLive()
+  const { photos, pairs } = useLive()
   const hasWork = photos.some(photoIsPublic) || pairs.some(pairIsPublic)
   return (
     <div className="bg-ground text-white">
@@ -18,12 +19,8 @@ export function WorkView() {
             <WorkCompares />
             <WorkStack />
           </>
-        ) : (
-          <p className="mt-6 max-w-xl text-xl font-medium">Photos go here when we have them.</p>
-        )}
-        <a href={phoneTel(site.phone_display)} className="cta cta-call mt-10">
-          {site.cta_primary}
-        </a>
+        ) : null}
+        <ContactActions className="mt-10 items-stretch sm:items-center" />
       </div>
     </div>
   )

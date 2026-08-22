@@ -49,11 +49,11 @@ Create D1 `mm-professional-cleaning` and R2 `mm-professional-cleaning-photos`, t
 
 ## Contact on the site
 
-- Primary CTA: Call [(541) 310-0590](tel:+15413100590)
+- Call [(541) 310-0590](tel:+15413100590)
+- Text [(541) 310-0590](sms:+15413100590)
 - Email [m.mprofessionalcleaning@yahoo.com](mailto:m.mprofessionalcleaning@yahoo.com)
-- Area: Eugene/Springfield and surrounding areas
-- Free estimates
-- Call, text, or email
+- Area: Eugene / Springfield and surrounding
+- Voice copy is locked. Do not print "And more." as a fifth trade.
 
 No street. No owner name. No CCB. No hours. No prices. No reviews. No extra trades. No custom domain on the page.
 

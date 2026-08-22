@@ -19,7 +19,7 @@ export type LiveSite = {
   quote_helper: string
 }
 
-export type LiveService = { id?: number; slug: string; name: string }
+export type LiveService = { id?: number; slug: string; name: string; blurb?: string }
 export type LivePhoto = {
   id?: number
   src: string
@@ -47,6 +47,7 @@ export const fallbackSite: LiveSite = {
 export const fallbackServices: LiveService[] = services.map((row) => ({
   slug: row.slug,
   name: row.name,
+  blurb: row.blurb,
 }))
 
 export const fallbackPhotos: LivePhoto[] = jobPhotos.map((row) => ({
@@ -70,6 +71,19 @@ export function phoneTel(display: string) {
 
 export function emailMailto(email: string) {
   return `mailto:${email}`
+}
+
+export function phoneSms(display: string) {
+  const digits = display.replace(/\D/g, "")
+  if (digits.length === 10) return `sms:+1${digits}`
+  if (digits.length === 11 && digits.startsWith("1")) return `sms:+${digits}`
+  return site.phoneSms
+}
+
+export function serviceBlurb(service: { slug?: string; name: string; blurb?: string }) {
+  if (service.blurb) return service.blurb
+  const hit = services.find((row) => row.slug === service.slug || row.name === service.name)
+  return hit?.blurb || ""
 }
 
 export function aboutLines(text: string) {

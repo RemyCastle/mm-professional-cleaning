@@ -3,17 +3,18 @@ INSERT OR IGNORE INTO site (
   cta_primary, cta_secondary, quote_heading, quote_submit, quote_photos, quote_helper, updated_at
 ) VALUES (
   1,
-  'Residential, move-in, deep clean. Call for a free estimate.',
-  'Eugene and Springfield. Ten years at it.',
-  'We clean homes in Eugene and Springfield.
-Ten years at it.
+  'Eugene and Springfield. We clean them.',
+  'Houses, move-in, move-out, after the build, deep clean. Free estimates.',
+  'M & M Professional Cleaning.
+More than ten years.
+Eugene, Springfield, and surrounding.
 Estimates are free.
 Call, text, or email.',
   '(541) 310-0590',
   'm.mprofessionalcleaning@yahoo.com',
-  'Eugene/Springfield and surrounding areas',
+  'Eugene / Springfield and surrounding',
   'Call (541) 310-0590',
-  'Email us',
+  'Text (541) 310-0590',
   'Free estimate',
   'Send',
   'Photo of the job, optional',

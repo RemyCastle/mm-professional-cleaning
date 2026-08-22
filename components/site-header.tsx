@@ -36,7 +36,7 @@ export function SiteHeader() {
           className="cta cta-call"
           style={{ minHeight: "2.75rem", fontSize: "1.05rem" }}
         >
-          Call {site.phone_display}
+          {site.cta_primary}
         </a>
       </div>
       <nav className="flex items-center justify-around border-t border-white/30 px-2 py-2 text-xs font-extrabold uppercase tracking-wider md:hidden">

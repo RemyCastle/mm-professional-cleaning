@@ -8,6 +8,7 @@ import {
   fallbackServices,
   fallbackSite,
   photoIsPublic,
+  serviceBlurb,
   type LivePhoto,
   type LiveService,
   type LiveSite,
@@ -66,7 +67,10 @@ export function LivePublicProvider({ children }: { children: React.ReactNode }) 
               }
             : fallbackSite,
           services: Array.isArray(siteRes?.services) && siteRes.services.length
-            ? siteRes.services
+            ? siteRes.services.map((row: LiveService) => ({
+                ...row,
+                blurb: serviceBlurb(row),
+              }))
             : fallbackServices,
           photos: Array.isArray(photoRes?.photos)
             ? photoRes.photos.filter(photoIsPublic)

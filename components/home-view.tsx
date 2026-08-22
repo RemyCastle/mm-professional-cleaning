@@ -3,15 +3,17 @@
 import Image from "next/image"
 
 import { AboutLines } from "@/components/about-lines"
+import { ContactActions } from "@/components/contact-actions"
 import { useLive } from "@/components/live-public"
+import { ServiceLines } from "@/components/service-lines"
 import { WorkCompares } from "@/components/work-compares"
 import { WorkStack } from "@/components/work-stack"
-import { emailMailto, phoneTel, photoIsPublic } from "@/lib/public"
+import { photoIsPublic } from "@/lib/public"
 import { pairIsPublic } from "@/lib/pairs"
-import { marks, site as locked } from "@/lib/site"
+import { marks } from "@/lib/site"
 
 export function HomeView() {
-  const { site, services, photos, pairs } = useLive()
+  const { site, photos, pairs } = useLive()
   const hasWork = photos.some(photoIsPublic) || pairs.some(pairIsPublic)
   return (
     <div className="bg-ground text-white">
@@ -30,33 +32,20 @@ export function HomeView() {
             {site.hero_title}
           </h1>
           <p className="mt-5 max-w-md text-lg font-medium sm:text-xl">{site.hero_lead}</p>
-          <div className="mt-8 flex w-full flex-col items-center gap-3 sm:max-w-sm">
-            <a href={phoneTel(site.phone_display)} className="cta cta-call w-full">
-              {site.cta_primary}
-            </a>
-            <a href={emailMailto(site.email)} className="cta cta-mail w-full">
-              {site.cta_secondary}
-            </a>
-          </div>
+          <ContactActions className="mt-8" />
         </div>
       </section>
 
       <section className="border-t border-white/25">
         <div className="mx-auto max-w-5xl px-4 py-12">
-          <h2 className="text-5xl">Services</h2>
-          <ul className="mt-8 max-w-xl list-disc space-y-2 pl-5 text-xl font-medium marker:text-hot">
-            {services.map((service) => (
-              <li key={service.slug}>{service.name}</li>
-            ))}
-          </ul>
-          <p className="mt-4 text-base font-medium text-white/80">{locked.moreLine}</p>
+          <h2 className="text-5xl">Work</h2>
+          <ServiceLines />
         </div>
       </section>
 
       {hasWork ? (
-        <section id="work" className="border-t border-white/25">
+        <section id="photos" className="border-t border-white/25">
           <div className="mx-auto max-w-5xl px-4 py-12">
-            <h2 className="text-5xl">Work</h2>
             <WorkCompares />
             <WorkStack />
           </div>

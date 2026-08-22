@@ -5,6 +5,7 @@ import Link from "next/link"
 import { BrandMark } from "@/components/brand-mark"
 import { useLive } from "@/components/live-public"
 import { emailMailto, phoneTel } from "@/lib/public"
+import { site as locked } from "@/lib/site"
 
 export function SiteFooter() {
   const { site } = useLive()
@@ -13,6 +14,8 @@ export function SiteFooter() {
       <div className="mx-auto flex max-w-5xl flex-col gap-5 px-4 py-10">
         <BrandMark className="h-20" />
         <p className="max-w-2xl text-base font-semibold leading-relaxed">
+          {locked.name}
+          <br />
           {site.towns}
           <br />
           <a
@@ -21,7 +24,7 @@ export function SiteFooter() {
           >
             {site.phone_display}
           </a>
-          {" · "}
+          <br />
           <a
             href={emailMailto(site.email)}
             className="underline decoration-hot underline-offset-4"
@@ -29,7 +32,6 @@ export function SiteFooter() {
             {site.email}
           </a>
         </p>
-        <p className="text-sm font-semibold">Call, text, or email. Estimates are free.</p>
         <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold">
           <Link href="/" className="hover:text-hot">
             Home
