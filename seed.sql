@@ -32,6 +32,6 @@ INSERT INTO services (slug, name, sort_order) SELECT 'move-in-move-out', 'Move I
 INSERT INTO services (slug, name, sort_order) SELECT 'post-construction', 'Post-Construction', 2 WHERE NOT EXISTS (SELECT 1 FROM services WHERE slug = 'post-construction');
 INSERT INTO services (slug, name, sort_order) SELECT 'deep-cleaning', 'Deep Cleaning', 3 WHERE NOT EXISTS (SELECT 1 FROM services WHERE slug = 'deep-cleaning');
 
--- Do not insert photos. No photo means the job type stays off Work.
+-- Do not insert photos. Empty D1 photos falls back to public/work stills.
 -- Do not insert pairs. Zero is the default. Never invent a before/after.
 -- Do not insert reviews. Zero featured means no quotes on the public site. Never invent a review.

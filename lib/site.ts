@@ -31,7 +31,7 @@ export const site = {
 
 export const marks = {
   logo: "/logo.jpeg",
-  logoMark: "/logo-mark.png",
+  logoMark: "/logo.jpeg",
 } as const
 
 export const jobPhotos: readonly {
@@ -40,7 +40,36 @@ export const jobPhotos: readonly {
   caption: string
   width: number
   height: number
-}[] = []
+}[] = [
+  {
+    src: "/work/residential-cleaning.jpg",
+    alt: "Residential Cleaning",
+    caption: "Residential Cleaning",
+    width: 1600,
+    height: 1067,
+  },
+  {
+    src: "/work/move-in-move-out.jpg",
+    alt: "Move In / Move Out",
+    caption: "Move In / Move Out",
+    width: 1600,
+    height: 1067,
+  },
+  {
+    src: "/work/post-construction.jpg",
+    alt: "Post-Construction",
+    caption: "Post-Construction",
+    width: 1600,
+    height: 1067,
+  },
+  {
+    src: "/work/deep-cleaning.jpg",
+    alt: "Deep Cleaning",
+    caption: "Deep Cleaning",
+    width: 1600,
+    height: 2400,
+  },
+]
 
 export const services = [
   {

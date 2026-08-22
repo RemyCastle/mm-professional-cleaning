@@ -9,7 +9,7 @@ import {
   fallbackServices,
   fallbackSite,
   featuredReviews,
-  photoIsPublic,
+  livePhotos,
   serviceBlurb,
   type LivePhoto,
   type LiveReview,
@@ -79,9 +79,7 @@ export function LivePublicProvider({ children }: { children: React.ReactNode }) 
                 blurb: serviceBlurb(row),
               }))
             : fallbackServices,
-          photos: Array.isArray(photoRes?.photos)
-            ? photoRes.photos.filter(photoIsPublic)
-            : fallbackPhotos,
+          photos: livePhotos(photoRes?.photos),
           pairs: Array.isArray(pairRes?.pairs) ? pairRes.pairs.filter(pairIsPublic) : fallbackPairs,
           reviews: Array.isArray(reviewRes?.reviews)
             ? featuredReviews(reviewRes.reviews)

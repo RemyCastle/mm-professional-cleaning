@@ -71,6 +71,11 @@ export function photoIsPublic(photo: { src?: string | null }) {
   return Boolean(String(photo.src || "").trim())
 }
 
+export function livePhotos(rows?: LivePhoto[] | null) {
+  const shown = (Array.isArray(rows) ? rows : []).filter(photoIsPublic)
+  return shown.length ? shown : fallbackPhotos
+}
+
 export function reviewIsPublic(review: { name?: string; text?: string; stars?: number }) {
   const name = String(review.name || "").trim()
   const text = String(review.text || "").trim()

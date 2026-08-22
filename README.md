@@ -16,7 +16,6 @@ No printed custom domain. Host later as a Cloudflare Pages project. Do not inven
 
 ```bash
 npm install
-python3 scripts/crop-logo.py
 npm run build
 ```
 
@@ -33,13 +32,13 @@ npx wrangler pages dev ./out
 
 Open `/admin`. First visit: create owner. Then Site / Requests / Photos / Reviews / Users.
 
-Work stills stay a vertical stack. A job type stays off Work until it has a picture. Before/After is optional and off until both images are uploaded. Zero pairs is the default.
+Work stills: four stock photos in `public/work/`, captions are the four card services only. If D1 photos is empty, those stills show. No fake before/after pairs.
 
 Featured reviews are optional. Paste a real quote (name, stars, text). Public shows featured only, highest stars first. Zero featured means no review quotes on the page. Do not invent reviews.
 
 ## Deploy
 
-Pages project `mm-professional-cleaning`. Build: `npm ci && npm run chrome && npm run build`. Output: `out`.
+Pages project `mm-professional-cleaning`. Build: `npm ci && npm run build`. Output: `out`. Do not run crop or remap scripts on Remy's logo.
 
 ```bash
 npx wrangler d1 execute mm-professional-cleaning --remote --file=schema.sql
@@ -72,6 +71,5 @@ Not Sharky `#3F8C10`. Not Solid Craft charcoal/brass.
 
 Great Vibes for **M & M** only. Manrope for PROFESSIONAL CLEANING and UI. Never Big Shoulders, Libre Franklin, Teko, or Cinzel.
 
-- `public/source/logo-mark.jpg` — attached mark (woman + broom + script). Crop only. Do not redraw.
-- `public/logo.jpeg` — that crop on mint, hero. No gold or charcoal frame.
-- `public/logo-mark.png` — same crop for chrome
+- `public/logo.jpeg` — Remy's exact logo (woman + broom + real M & M script). Header and hero. Do not redraw, crop, or remap.
+- `marks.logo` and `marks.logoMark` both point at `/logo.jpeg`.
