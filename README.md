@@ -62,10 +62,12 @@ No street. No owner name. No CCB. No hours. No prices. No invented reviews. No e
 
 Look only. Voice copy still wins on words.
 
-- Ground `#66C178`
-- Ink `#FAFCFA`
-- Hot `#F2C344` — the only accent (buttons, stripe)
-- Mute `#3D7A52`
+Sampled from `public/logo.jpeg`. Do not recolor the logo artwork.
+
+- Ground `#61B873`
+- Ink `#FFFFFF`
+- Hot `#F3C242` — the only accent (buttons, stripe)
+- Mute `#398650`
 
 Not Sharky `#3F8C10`. Not Solid Craft charcoal/brass.
 
